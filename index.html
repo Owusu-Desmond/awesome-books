@@ -12,7 +12,55 @@
     <title>Awesome Books</title>
   </head>
   <body>
-    <h1>Hello Awesome Books</h1>
+    <header>
+      <div id="logo">Awesome Books</div>
+      <nav>
+        <ul class="nav-links">
+          <li class="nav-link active" onclick="displayPage(0)">List</li>
+          <li class="nav-link" onclick="displayPage(1)">Add New</li>
+          <li class="nav-link" onclick="displayPage(2)">Contact</li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main">
+      <!-- this sections contains the list of books added -->
+      <section>
+        <h2>All Awesome Books</h2>
+        <div class="added-books-container">
+          <!-- This Contains All Books -->
+        </div>
+      </section>
+      <!--  add book section -->
+      <section class="hide">
+        <h2 class="form-prompt">Add a new Book</h2>
+        <div class="error-message"></div>
+        <form id="form">
+          <div><input type="text" name="title" placeholder="Title" /></div>
+          <div><input type="text" name="author" placeholder="Author" /></div>
+          <button type="submit" id="form-button">Add</button>
+        </form>
+      </section>
+      <!-- the contact section -->
+      <section class="hide">
+        <h2>Contact Information</h2>
+        <p>
+          Do you have any questions to ask or you just want to say "Hello"?
+          <br />
+          You can reach out to us!
+        </p>
+        <ul>
+          <li>Our email mail@mail.com</li>
+          <li>Our phone Number : 004358945432</li>
+          <li>Our Address streetName 22, 54356 city, Country</li>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      Copyright 2022 Awesome Books<br />
+      All rights reserved
+    </footer>
+
+    <!-- include javascript -->
     <script src="./js/script.js"></script>
   </body>
 </html>
