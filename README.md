@@ -2,7 +2,7 @@
 
 # Awesome Books
 
-Awesome Books is a website that allow users to create an book with title and author name and add to their books list on the page.
+Awesome Books is a website that allow users to create a book with title and author name and add to their books list on the page.
 
 ## Getting Started
 
@@ -27,7 +27,8 @@ Access the the online version of my application with this link
 
 - Editor : Visual studio code
 
-- Languages 
+- Languages
+
   - [ ] HTML
   - [ ] CSS
   - [ ] JavaScript
@@ -43,7 +44,6 @@ Access the the online version of my application with this link
 - Github [@Owusu-Desmond](https://github.com/Owusu-Desmond)
 - Twitter [@DesmondOwusuDev](https://twitter.com/DesmondOwusuDev)
 - LinkedIn [@desmond-owusu-ansah](https://www.linkedin.com/in/desmond-owusu-ansah-09274a223/)
-
 
 ## 🤝 Contributing
 
