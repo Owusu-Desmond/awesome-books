@@ -131,7 +131,25 @@ form.addEventListener('submit', (event) => {
 });
 // Display Books When Page is loads
 UI.updateBooks(document.querySelector('.added-books-container'));
-
+// Remove completely from storage and UI
+const removeBook = () => {
+  booksContainer.addEventListener('click', (e) => {
+    const books = Storage.getBooks();
+    books.forEach((b) => {
+      if (e.target.classList.contains(`${b.title}${b.author}btn`)) {
+        // from from UI
+        UI.removeBook(b.title, b.author);
+        const bookTitle = document.getElementById(`${b.title}${b.author}title`).innerHTML;
+        const bookAuthor = document.getElementById(`${b.title}${b.author}author`).innerHTML;
+        Storage.removeBook(bookTitle, bookAuthor);
+      }
+    });
+  });
+};
+// call removeBook function whenever document is click
+document.addEventListener('click', () => {
+  removeBook();
+});
 // display sections base on the active link on
 const displayPage = (num) => {
   sections.forEach((section) => section.classList.add('hide'));
@@ -139,6 +157,6 @@ const displayPage = (num) => {
   navLinks.forEach((link) => { link.className = 'nav-link'; });
   navLinks[num].classList.add('active');
 };
-bookLists.addEventListener('click', displayPage(1))
-addNew.addEventListener('click', displayPage(2))
-contact.addEventListener('click', displayPage(3))
+bookLists.addEventListener('click', displayPage(1));
+addNew.addEventListener('click', displayPage(2));
+contact.addEventListener('click', displayPage(3));
