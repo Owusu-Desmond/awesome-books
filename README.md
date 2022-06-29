@@ -21,7 +21,7 @@ Copy All Project files and run using VSCODE. HTML can be viewed in browser.
 ## Live Demo Link
 
 Access the the online version of my application with this link
-[Live Demo](https:/Owusu-Desmond/.github.io/awesome-books/)
+[Live Demo](https://owusu-desmond.github.io/awesome-books/)
 
 ## Build With
 
@@ -36,6 +36,7 @@ Access the the online version of my application with this link
 - Terminologies used
   - [ ] Linters
   - [ ] LocalStorage
+  - [ ] Github workflow
 
 ## Author
 
