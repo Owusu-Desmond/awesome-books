@@ -57,9 +57,7 @@ class UI {
     static updateBooks(booksContainer) {
       const books = Storage.getBooks();
       booksContainer.innerHTML = '';
-      if (books) {
-        books.forEach((book) => this.addBook(book));
-      }
+      if (books) books.forEach((book) => this.addBook(book));
     }
   
     // add book 
@@ -103,20 +101,13 @@ class UI {
     // validation
     static validate(book) {
       const books = Storage.getBooks();
-  
-      if (!books) {
-        return true;
-      }
-      let count = 0;
+      if (!books) return true;
+      let userExist = "No";
       books.forEach((b) => {
-        if (b.title === book.title && b.author === book.author) {
-          count += 1;
-        }
+        if (b.title === book.title && b.author === book.author) userExist = "Yes"
       });
-      if (count === 0) {
-        return true;
-      }
-      UI.displayError('Book title and author already added');
+      if (userExist === "No") return true;
+      this.displayError('Book title and author already added');
       return false;
     }
   }
