@@ -15,7 +15,7 @@ class Book {
 // Storage Class: Handles all Operations on Local Storage
 class Storage {
     // set new or modified books to storage
-    static setBook(books) {
+    static setBooks(books) {
         localStorage.setItem('books', JSON.stringify(books));
     }
 
@@ -31,12 +31,12 @@ class Storage {
         // Check if books exist then add them to Local Storage
         if (!books) {
             const books = [];
-            this.setBook(books);
+            this.setBooks(books);
             books.push(book);
-            this.setBook(books);
+            this.setBooks(books);
         } else {
             books.push(book);
-            this.setBook(books);
+            this.setBooks(books);
         }
     }
 
@@ -45,11 +45,81 @@ class Storage {
         books.forEach((b, index) => {
             if (bookTitle === b.title && bookAuthor === b.author) {
                 books.splice(index, 1);
-                this.setBook(books);
+                this.setBooks(books);
             }
         });
     }
 }
+// User Class : Updates Specific parts of the User Interface ======
+class UI {
+
+    // get books from storage and show them to the UI
+    static updateBooks(booksContainer) {
+      const books = Storage.getBooks();
+      booksContainer.innerHTML = '';
+      if (books) {
+        books.forEach((book) => this.addBook(book));
+      }
+    }
+  
+    // add book 
+    static addBook(book) {
+      const bookUI = document.createElement('div');
+      bookUI.className = 'book';
+      bookUI.setAttribute('id', (`${book.title}${book.author}`));
+      bookUI.innerHTML = `
+                  <p class="book-title">"
+                      <span id='${book.title}${book.author}title'>${book.title}</span>" by 
+                      <span id='${book.title}${book.author}author'>${book.author}</span>
+                  </p>
+                  <button class="${book.title}${book.author}btn remove-button" type="button" class="remove-button">
+                      &times;
+                  </button>
+          `;
+      booksContainer.append(bookUI);
+    }
+    
+    // clear book after from submit
+    static clearInputs() {
+      form.elements.title.value = '';
+      form.elements.author.value = '';
+    }
+    
+    // remove book
+    static removeBook(bookTitle, bookAuthor) {
+      document.getElementById(`${bookTitle}${bookAuthor}`).style.display = 'none';
+    }
+    
+    // display error message 
+    static displayError(message) {
+      const errorMessage = document.querySelector('.error-message');
+      errorMessage.innerHTML = message;
+      // remove error massage after 5s time
+      setTimeout(() => {
+        errorMessage.innerHTML = '';
+      }, 5000);
+    }
+    
+    // validation
+    static validate(book) {
+      const books = Storage.getBooks();
+  
+      if (!books) {
+        return true;
+      }
+      let count = 0;
+      books.forEach((b) => {
+        if (b.title === book.title && b.author === book.author) {
+          count += 1;
+        }
+      });
+      if (count === 0) {
+        return true;
+      }
+      UI.displayError('Book title and author already added');
+      return false;
+    }
+  }
 // display sections base on the active link on
 const displayPage = (num) => {
     sections.forEach((section) => section.classList.add('hide'));
