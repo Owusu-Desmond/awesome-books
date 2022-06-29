@@ -7,65 +7,64 @@ const navLinks = Array.from(document.querySelectorAll('.nav-link'));
 
 // Book Class : Creates a Book when Instantiated
 class Book {
-    constructor(title, author) {
-        this.title = title;
-        this.author = author;
-    }
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
 }
 // Storage Class: Handles all Operations on Local Storage
 class Storage {
-    // set new or modified books to storage
-    static setBooks(books) {
-        localStorage.setItem('books', JSON.stringify(books));
-    }
+  // set new or modified books to storage
+  static setBooks(books) {
+    localStorage.setItem('books', JSON.stringify(books));
+  }
 
-    // Retrieve books from Storage
-    static getBooks() {
-        const books = JSON.parse(localStorage.getItem('books'));
-        return books;
-    }
+  // Retrieve books from Storage
+  static getBooks() {
+    const books = JSON.parse(localStorage.getItem('books'));
+    return books;
+  }
 
-    // add book to already existing books in storage
-    static addBook(book) {
-        const books = this.getBooks();
-        // Check if books exist then add them to Local Storage
-        if (!books) {
-            const books = [];
-            this.setBooks(books);
-            books.push(book);
-            this.setBooks(books);
-        } else {
-            books.push(book);
-            this.setBooks(books);
-        }
+  // add book to already existing books in storage
+  static addBook(book) {
+    const books = this.getBooks();
+    // Check if books exist then add them to Local Storage
+    if (!books) {
+      const books = [];
+      this.setBooks(books);
+      books.push(book);
+      this.setBooks(books);
+    } else {
+      books.push(book);
+      this.setBooks(books);
     }
+  }
 
-    static removeBook(bookTitle, bookAuthor) {
-        const books = this.getBooks();
-        books.forEach((b, index) => {
-            if (bookTitle === b.title && bookAuthor === b.author) {
-                books.splice(index, 1);
-                this.setBooks(books);
-            }
-        });
-    }
+  static removeBook(bookTitle, bookAuthor) {
+    const books = this.getBooks();
+    books.forEach((b, index) => {
+      if (bookTitle === b.title && bookAuthor === b.author) {
+        books.splice(index, 1);
+        this.setBooks(books);
+      }
+    });
+  }
 }
 // User Class : Updates Specific parts of the User Interface ======
 class UI {
+  // get books from storage and show them to the UI
+  static updateBooks(booksContainer) {
+    const books = Storage.getBooks();
+    booksContainer.innerHTML = '';
+    if (books) books.forEach((book) => this.addBook(book));
+  }
 
-    // get books from storage and show them to the UI
-    static updateBooks(booksContainer) {
-      const books = Storage.getBooks();
-      booksContainer.innerHTML = '';
-      if (books) books.forEach((book) => this.addBook(book));
-    }
-  
-    // add book 
-    static addBook(book) {
-      const bookUI = document.createElement('div');
-      bookUI.className = 'book';
-      bookUI.setAttribute('id', (`${book.title}${book.author}`));
-      bookUI.innerHTML = `
+  // add book
+  static addBook(book) {
+    const bookUI = document.createElement('div');
+    bookUI.className = 'book';
+    bookUI.setAttribute('id', (`${book.title}${book.author}`));
+    bookUI.innerHTML = `
                   <p class="book-title">"
                       <span id='${book.title}${book.author}title'>${book.title}</span>" by 
                       <span id='${book.title}${book.author}author'>${book.author}</span>
@@ -74,47 +73,66 @@ class UI {
                       &times;
                   </button>
           `;
-      booksContainer.append(bookUI);
-    }
-    
-    // clear book after from submit
-    static clearInputs() {
-      form.elements.title.value = '';
-      form.elements.author.value = '';
-    }
-    
-    // remove book
-    static removeBook(bookTitle, bookAuthor) {
-      document.getElementById(`${bookTitle}${bookAuthor}`).style.display = 'none';
-    }
-    
-    // display error message 
-    static displayError(message) {
-      const errorMessage = document.querySelector('.error-message');
-      errorMessage.innerHTML = message;
-      // remove error massage after 5s time
-      setTimeout(() => {
-        errorMessage.innerHTML = '';
-      }, 5000);
-    }
-    
-    // validation
-    static validate(book) {
-      const books = Storage.getBooks();
-      if (!books) return true;
-      let userExist = "No";
-      books.forEach((b) => {
-        if (b.title === book.title && b.author === book.author) userExist = "Yes"
-      });
-      if (userExist === "No") return true;
-      this.displayError('Book title and author already added');
-      return false;
-    }
+    booksContainer.append(bookUI);
   }
+
+  // clear book after from submit
+  static clearInputs() {
+    form.elements.title.value = '';
+    form.elements.author.value = '';
+  }
+
+  // remove book
+  static removeBook(bookTitle, bookAuthor) {
+    document.getElementById(`${bookTitle}${bookAuthor}`).style.display = 'none';
+  }
+
+  // display error message
+  static displayError(message) {
+    const errorMessage = document.querySelector('.error-message');
+    errorMessage.innerHTML = message;
+    // remove error massage after 5s time
+    setTimeout(() => {
+      errorMessage.innerHTML = '';
+    }, 5000);
+  }
+
+  // validation
+  static validate(book) {
+    const books = Storage.getBooks();
+    if (!books) return true;
+    let userExist = 'No';
+    books.forEach((b) => {
+      if (b.title === book.title && b.author === book.author) userExist = 'Yes';
+    });
+    if (userExist === 'No') return true;
+    this.displayError('Book title and author already added');
+    return false;
+  }
+}
+// Form Function : Listens for Form Submission then executes Functions
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const title = form.elements.title.value;
+  const author = form.elements.author.value;
+  const book = new Book(title, author);
+  // Test String for letters
+  const validate = /[a-zA-Z]/g;
+
+  if (validate.test(title) && validate.test(author) && UI.validate(book)) {
+    Storage.addBook(book);
+    UI.addBook(book);
+    UI.updateBooks(booksContainer);
+    UI.clearInputs();
+  }
+});
+// Display Books When Page is loads
+UI.updateBooks(document.querySelector('.added-books-container'));
+
 // display sections base on the active link on
 const displayPage = (num) => {
-    sections.forEach((section) => section.classList.add('hide'));
-    main.children[num].classList.remove('hide');
-    navLinks.forEach((link) => { link.className = 'nav-link'; });
-    navLinks[num].classList.add('active');
+  sections.forEach((section) => section.classList.add('hide'));
+  main.children[num].classList.remove('hide');
+  navLinks.forEach((link) => { link.className = 'nav-link'; });
+  navLinks[num].classList.add('active');
 };
