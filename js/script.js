@@ -12,9 +12,9 @@ class Book {
         this.author = author;
     }
 }
-// Store Class: Handles all Operations on Local Storage
-class Store {
-
+// Storage Class: Handles all Operations on Local Storage
+class Storage {
+    // set new or modified books to storage
     static setBook(books) {
         localStorage.setItem('books', JSON.stringify(books));
     }
@@ -25,8 +25,9 @@ class Store {
         return books;
     }
 
+    // add book to already existing books in storage
     static addBook(book) {
-        const books = JSON.parse(localStorage.getItem('books'));
+        const books = this.getBooks();
         // Check if books exist then add them to Local Storage
         if (!books) {
             const books = [];
