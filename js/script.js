@@ -4,6 +4,9 @@ const booksContainer = document.querySelector('.added-books-container');
 const main = document.querySelector('main');
 const sections = Array.from(document.querySelectorAll('section'));
 const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+const bookLists = document.getElementById('book-lists');
+const addNew = document.getElementById('add-new');
+const contact = document.getElementById('contact');
 
 // Book Class : Creates a Book when Instantiated
 class Book {
@@ -136,3 +139,6 @@ const displayPage = (num) => {
   navLinks.forEach((link) => { link.className = 'nav-link'; });
   navLinks[num].classList.add('active');
 };
+bookLists.addEventListener('click', displayPage(1))
+addNew.addEventListener('click', displayPage(2))
+contact.addEventListener('click', displayPage(3))
