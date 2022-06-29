@@ -1,12 +1,14 @@
 @import url("http://fonts.cdnfonts.com/css/cocogoose");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+/* style for page */
 * {
   padding: 0;
   margin: 0;
-  font-family: "Poppins", "COCOGOOSE", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
+/* the header section */
 header {
   padding: 20px;
   display: flex;
@@ -43,6 +45,7 @@ header {
   color: green;
 }
 
+/* style for nav links section */
 section {
   display: flex;
   flex-direction: column;
@@ -62,6 +65,7 @@ section:nth-child(1) {
   padding-top: 20px;
 }
 
+/* List of books section */
 .added-books-container {
   width: 100%;
   border: 1px solid lightgray;
@@ -99,6 +103,9 @@ section:nth-child(1) {
   background: rgb(219, 0, 0);
 }
 
+/* list of books list section ends here ..... */
+
+/* add book section */
 .form-prompt {
   margin-top: 20px;
 }
@@ -139,6 +146,9 @@ form button:active {
   box-shadow: none;
 }
 
+/* add book section ends here .. */
+
+/* the footer section */
 footer {
   background: #d3d3d3;
   padding: 30px;
