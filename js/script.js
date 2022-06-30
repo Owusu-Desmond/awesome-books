@@ -64,11 +64,11 @@ class UI {
 
   // add book
   static addBook(book) {
-    const uniqueBookId = (book.title + book.author).replace(/\s/g, "")
+    const uniqueBookId = (book.title + book.author).replace(/\s/g, '');
     const bookUI = document.createElement('div');
     bookUI.className = 'book';
     bookUI.setAttribute('id', (uniqueBookId));
-    
+
     bookUI.innerHTML = `
                   <p class="book-title">"
                       <span id='${uniqueBookId}title'>${book.title}</span>" by 
@@ -89,7 +89,7 @@ class UI {
 
   // remove book
   static removeBook(uniqueBookId) {
-    document.getElementById(uniqueBookId).remove()
+    document.getElementById(uniqueBookId).remove();
   }
 
   // display error message
@@ -138,8 +138,8 @@ const removeBook = () => {
   booksContainer.addEventListener('click', (e) => {
     const books = Storage.getBooks();
     books.forEach((b) => {
-    const uniqueBookId = (b.title + b.author).replace(/\s/g, "")
-    if (e.target.classList.contains(`${uniqueBookId}btn`)) {
+      const uniqueBookId = (b.title + b.author).replace(/\s/g, '');
+      if (e.target.classList.contains(`${uniqueBookId}btn`)) {
         const bookTitle = document.getElementById(`${uniqueBookId}title`).innerHTML;
         const bookAuthor = document.getElementById(`${uniqueBookId}author`).innerHTML;
         Storage.removeBook(bookTitle, bookAuthor);
