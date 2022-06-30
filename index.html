@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Create a book with title and author name and add to your books list on your page"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Awesome Books</title>
+  </head>
+  <body>
+    <header>
+      <div id="logo">Awesome Books</div>
+      <nav>
+        <ul class="nav-links">
+          <li class="nav-link active" id="books-lists">Lists</li>
+          <li class="nav-link" id="add-new">Add New</li>
+          <li class="nav-link" id="contact">Contact</li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main">
+      <!-- this sections contains the list of books added -->
+      <section>
+        <h2>All Awesome Books</h2>
+        <div class="added-books-container">
+          <!-- This Contains All Books -->
+        </div>
+      </section>
+      <!--  add book section -->
+      <section class="hide">
+        <h2 class="form-prompt">Add a new Book</h2>
+        <div class="error-message"></div>
+        <form id="form">
+          <div><input type="text" name="title" placeholder="Title" /></div>
+          <div><input type="text" name="author" placeholder="Author" /></div>
+          <button type="submit" id="form-button">Add</button>
+        </form>
+      </section>
+      <!-- the contact section -->
+      <section class="hide">
+        <h2>Contact Information</h2>
+        <p>
+          Do you have any questions to ask or you just want to say "Hello"?
+          <br />
+          You can reach out to us!
+        </p>
+        <ul>
+          <li>Our email mail@mail.com</li>
+          <li>Our phone Number : 004358945432</li>
+          <li>Our Address streetName 22, 54356 city, Country</li>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      Copyright 2022 Awesome Books<br />
+      All rights reserved
+    </footer>
+
+    <!-- include javascript -->
+    <script src="./js/script.js"></script>
+  </body>
+</html>
