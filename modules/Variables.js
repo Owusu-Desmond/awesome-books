@@ -9,12 +9,12 @@ const addNew = document.getElementById('add-new');
 const contact = document.getElementById('contact');
 
 export {
-    form,
-    booksContainer,
-    bookLists,
-    main,
-    sections,
-    navLinks,
-    addNew,
-    contact
+  form,
+  booksContainer,
+  bookLists,
+  main,
+  sections,
+  navLinks,
+  addNew,
+  contact,
 };
