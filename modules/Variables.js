@@ -7,6 +7,7 @@ const navLinks = Array.from(document.querySelectorAll('.nav-link'));
 const bookLists = document.getElementById('books-lists');
 const addNew = document.getElementById('add-new');
 const contact = document.getElementById('contact');
+const dateTimeContainer = document.querySelector('.time-date-container');
 
 export {
   form,
@@ -17,4 +18,5 @@ export {
   navLinks,
   addNew,
   contact,
+  dateTimeContainer,
 };
