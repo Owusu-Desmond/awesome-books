@@ -1,5 +1,5 @@
 import Storage from './Storage.js';
-import UI from './User.js';
+import UI from './UI.js';
 // validation
 const validate = (book) => {
   const books = Storage.getBooks();
