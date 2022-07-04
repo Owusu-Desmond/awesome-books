@@ -3,7 +3,7 @@ import Book from './modules/Book.js';
 import Storage from './modules/Storage.js';
 import UI from './modules/UI.js';
 import validation from './modules/Validation.js';
-import { displayPage, removeBook } from './modules/EventsHandles.js';
+import { displayPage, removeBook, displayTimeDate } from './modules/EventsHandles.js';
 import {
   bookLists, addNew, form, contact,
 } from './modules/Variables.js';
@@ -29,6 +29,8 @@ UI.retrieveBooks(Storage.getBooks());
 document.addEventListener('click', () => {
   removeBook();
 });
+// Display time and date
+setInterval(displayTimeDate, 1000);
 
 bookLists.onclick = () => displayPage(0);
 addNew.onclick = () => displayPage(1);
