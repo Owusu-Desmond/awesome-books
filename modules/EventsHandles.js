@@ -1,7 +1,8 @@
 import Storage from './Storage.js';
 import UI from './UI.js';
+import { DateTime } from 'luxon';
 import {
-  booksContainer, sections, main, navLinks,
+  booksContainer, sections, main, navLinks, dateTimeContainer,
 } from './Variables.js';
 // Remove completely from storage and UI
 const removeBook = () => {
@@ -28,4 +29,9 @@ const displayPage = (num) => {
   navLinks[num].classList.add('active');
 };
 
-export { displayPage, removeBook };
+const displayTimeDate = () => {
+  const currentTimeDate = DateTime.now();
+  dateTimeContainer.innerHTML = currentTimeDate.toLocaleString(DateTime.DATETIME_MED_WITH_SECONDS);
+};
+
+export { displayPage, removeBook, displayTimeDate };
