@@ -1,6 +1,6 @@
+import { DateTime } from './luxon.min.js';
 import Storage from './Storage.js';
 import UI from './UI.js';
-import { DateTime } from 'luxon';
 import {
   booksContainer, sections, main, navLinks, dateTimeContainer,
 } from './Variables.js';
