@@ -1,4 +1,5 @@
 import Storage from './Storage.js';
+import UI from './User.js';
 // validation
 const validate = (book) => {
   const books = Storage.getBooks();
@@ -8,7 +9,7 @@ const validate = (book) => {
     if (b.title === book.title && b.author === book.author) userExist = 'Yes';
   });
   if (userExist === 'No') return true;
-  this.displayError('Book title and author already added');
+  UI.displayError('Book title and author already added');
   return false;
 };
 export default validate;
